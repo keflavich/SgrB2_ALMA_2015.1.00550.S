@@ -5,8 +5,8 @@
 #
 # These are required
 #
-PMEM="30gb"
-PVMEM="200gb"
+MEM="30gb"
+VMEM="100gb"
 WORK_DIR='/lustre/aginsbur/sgrb2/2016.1.00550.S/reduction'
 COMMAND=$WORK_DIR/'run_line_imaging.sh'
 
@@ -18,8 +18,8 @@ NUM_CORES="1"      # default is 1
 #MAILTO="nm-4386"   # default is the user submitting the job
 #QUEUE="batch"      # default is the batch queue
 DATE=`date +%Y%M%D_%H%M%S`
-STDOUT="run_casa_incremental_log_stdout"    # file relative to WORK_DIR.  default is no output
-STDERR="run_casa_incremental_log_stderr"    # file relative to WORK_DIR.  default is no output
+STDOUT="run_casa_lines_log_stdout"    # file relative to WORK_DIR.  default is no output
+STDERR="run_casa_lines_log_stderr"    # file relative to WORK_DIR.  default is no output
 #UMASK="0117"       # default is 0077
 
 # MAIL_OPTIONS:
