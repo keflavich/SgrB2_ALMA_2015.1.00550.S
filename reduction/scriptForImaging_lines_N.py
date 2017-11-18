@@ -26,26 +26,30 @@ for spw,spw_orig in spwlist:
 
     for suffix, niter in (('clarkclean1000', 1000), ):
         
-        imagename = 'sgr_b2m.N.spw{0}.lines.{1}'.format(spw, suffix)
-        print("Imaging {0} at {1}".format(imagename, datetime.datetime.now()))
-        tclean(vis=mslist,
-               imagename=imagename,
-               datacolumn='data',
-               spw=['{0}'.format(spw), '{0}'.format(spw)],
-               field=['5', '6'],
-               specmode='cube',
-               outframe='LSRK',
-               threshold='1mJy',
-               imsize=[6000, 6000],
-               cell=['0.007arcsec'],
-               niter=niter,
-               deconvolver='clark',
-               gridder='standard',
-               weighting='briggs',
-               robust=0.5,
-               pbcor=True,
-               pblimit=0.2,
-               savemodel='none',
-               chanchunks=1,
-               interactive=False)
-        makefits(imagename)
+        step = 1920/32
+        for startchan in np.arange(0, 1920, step):
+
+            imagename = 'sgr_b2m.M.spw{0}.lines{2}-{3}.{1}'.format(spw, suffix, startchan, startchan+step)
+            if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):
+                print("Imaging {0} at {1}".format(imagename, datetime.datetime.now()))
+                tclean(vis=mslist,
+                       imagename=imagename,
+                       datacolumn='data',
+                       spw=['{0}'.format(spw), '{0}'.format(spw)],
+                       field=['5', '6'],
+                       specmode='cube',
+                       outframe='LSRK',
+                       threshold='1mJy',
+                       imsize=[6000, 6000],
+                       cell=['0.007arcsec'],
+                       niter=niter,
+                       deconvolver='clark',
+                       gridder='standard',
+                       weighting='briggs',
+                       robust=0.5,
+                       pbcor=True,
+                       pblimit=0.2,
+                       savemodel='none',
+                       chanchunks=1,
+                       interactive=False)
+                makefits(imagename)
