@@ -347,7 +347,7 @@ def make_spw_cube(spw='spw{0}', spwnum=0, fntemplate='SgrB2N',
 if __name__ == "__main__":
     #for robust in (0,2):
     robust = 0
-    for spw in (0,):#1,2,3):
+    for spw in (0,1,2,3):
 
         mxind = get_max_ind('sgr_b2m.N.spw{0}.lines*fits'.format(spw, robust))
         if mxind < min_nchans:

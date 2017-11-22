@@ -14,7 +14,7 @@ COMMAND=$WORK_DIR/'run_line_imaging.sh'
 # These are optional
 #
 NUM_NODES="1"      # default is 1
-NUM_CORES="1"      # default is 1
+NUM_CORES="9"      # default is 1
 #MAILTO="nm-4386"   # default is the user submitting the job
 #QUEUE="batch"      # default is the batch queue
 DATE=`date +%Y%M%D_%H%M%S`

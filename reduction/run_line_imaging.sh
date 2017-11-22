@@ -9,13 +9,13 @@ WORK_DIR='/lustre/aginsbur/sgrb2/2016.1.00550.S/science_goal.uid___A001_X879_X16
 cd ${WORK_DIR}
 REDUCTION_DIR='/lustre/aginsbur/sgrb2/2016.1.00550.S/reduction'
 
-## casa's python requires a DISPLAY for matplot so create a virtual X server
-#xvfb-run -d casa --nogui --nologger -c "execfile('$REDUCTION_DIR/scriptForImaging_lines.py')"
+# casa's python requires a DISPLAY for matplot so create a virtual X server
+xvfb-run -d casa --nogui --nologger -c "execfile('$REDUCTION_DIR/scriptForImaging_lines.py')"
 
-export CASAPATH=/home/casa/packages/RHEL6/release/casa-release-5.1.0-74
-export PATH=${CASAPATH}/bin:$PATH
-
-export CASACMD="execfile('$REDUCTION_DIR/scriptForImaging_lines.py')"
-echo $CASACMD
-
-mpicasa -machinefile $PBS_NODEFILE casa -quiet --nogui --nologger --log2term -c "${CASACMD}"
+#export CASAPATH=/home/casa/packages/RHEL6/release/casa-release-5.1.0-74
+#export PATH=${CASAPATH}/bin:$PATH
+#
+#export CASACMD="execfile('$REDUCTION_DIR/scriptForImaging_lines.py')"
+#echo $CASACMD
+#
+#mpicasa -machinefile $PBS_NODEFILE casa -quiet --nogui --nologger --log2term -c "${CASACMD}"
