@@ -74,7 +74,7 @@ for spw,spw_orig in enumerate((25,27,29,31)):
 
 suffix='clean1000'
 niter=1000
-imagename = 'sgr_b2m.M.allspw.continuum.{0}'.format(spw, suffix)
+imagename = 'sgr_b2m.M.allspw.continuum.{0}'.format(suffix)
 tclean(vis=mslist,
        imagename=imagename,
        datacolumn='data',
@@ -112,6 +112,56 @@ tclean(vis=mslist,
        cell=['0.007arcsec'],
        niter=niter,
        deconvolver='mtmfs',
+       gridder='standard',
+       weighting='briggs',
+       robust=0.5,
+       pbcor=True,
+       pblimit=0.2,
+       interactive=False)
+makefits(imagename)
+
+
+
+
+
+suffix='cleanto1mJy_2terms'
+niter=100000
+imagename = 'sgr_b2m.M.allspw.continuum.{0}'.format(suffix)
+tclean(vis=mslist,
+       imagename=imagename,
+       datacolumn='data',
+       spw=['0,1,2,3', '0,1,2,3'],
+       field=['4', '5'],
+       specmode='mfs',
+       deconvolver='mtmfs',
+       nterms=2,
+       outframe='LSRK',
+       threshold='1mJy',
+       imsize=[6000, 6000],
+       cell=['0.007arcsec'],
+       niter=niter,
+       gridder='standard',
+       weighting='briggs',
+       robust=0.5,
+       pbcor=True,
+       pblimit=0.2,
+       interactive=False)
+makefits(imagename)
+
+imagename = 'sgr_b2m.N.allspw.continuum.{0}'.format(suffix)
+tclean(vis=mslist,
+       imagename=imagename,
+       datacolumn='data',
+       spw=['0,1,2,3', '0,1,2,3'],
+       field=['5', '6'],
+       specmode='mfs',
+       deconvolver='mtmfs',
+       nterms=2,
+       outframe='LSRK',
+       threshold='1mJy',
+       imsize=[6000, 6000],
+       cell=['0.007arcsec'],
+       niter=niter,
        gridder='standard',
        weighting='briggs',
        robust=0.5,
