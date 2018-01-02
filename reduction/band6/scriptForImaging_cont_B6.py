@@ -24,7 +24,7 @@ for spw,spw_orig in enumerate((25,27,29,31)):
 
     for suffix, niter in (('dirty', 0), ('clean1000', 1000), ):
 
-        imagename = 'sgr_b2m.M.spw{0}.continuum.{1}'.format(spw, suffix)
+        imagename = 'sgr_b2m.M.B6.spw{0}.continuum.r0.5.{1}'.format(spw, suffix)
         tclean(vis=mslist,
                imagename=imagename,
                datacolumn='data',
@@ -48,7 +48,7 @@ for spw,spw_orig in enumerate((25,27,29,31)):
                interactive=False)
         makefits(imagename)
 
-        imagename = 'sgr_b2m.N.spw{0}.continuum.{1}'.format(spw, suffix)
+        imagename = 'sgr_b2m.N.B6.spw{0}.continuum.{1}'.format(spw, suffix)
         tclean(vis=mslist,
                imagename=imagename,
                datacolumn='data',
@@ -72,9 +72,9 @@ for spw,spw_orig in enumerate((25,27,29,31)):
                interactive=False)
         makefits(imagename)
 
-suffix='clean1000'
+suffix='.r0.5.clean1000'
 niter=1000
-imagename = 'sgr_b2m.M.allspw.continuum.{0}'.format(suffix)
+imagename = 'sgr_b2m.M.B6.allspw.continuum.{0}'.format(suffix)
 tclean(vis=mslist,
        imagename=imagename,
        datacolumn='data',
@@ -89,6 +89,7 @@ tclean(vis=mslist,
        cell=['0.007arcsec'],
        niter=niter,
        deconvolver='mtmfs',
+       scales=[0,4,12],
        gridder='standard',
        weighting='briggs',
        robust=0.5,
@@ -97,7 +98,7 @@ tclean(vis=mslist,
        interactive=False)
 makefits(imagename)
 
-imagename = 'sgr_b2m.N.allspw.continuum.{0}'.format(suffix)
+imagename = 'sgr_b2m.N.B6.allspw.continuum.{0}'.format(suffix)
 tclean(vis=mslist,
        imagename=imagename,
        datacolumn='data',
@@ -112,6 +113,7 @@ tclean(vis=mslist,
        cell=['0.007arcsec'],
        niter=niter,
        deconvolver='mtmfs',
+       scales=[0,4,12],
        gridder='standard',
        weighting='briggs',
        robust=0.5,
@@ -124,9 +126,9 @@ makefits(imagename)
 
 
 
-suffix='cleanto1mJy_2terms'
+suffix='.r0.5.cleanto1mJy_2terms'
 niter=100000
-imagename = 'sgr_b2m.M.allspw.continuum.{0}'.format(suffix)
+imagename = 'sgr_b2m.M.B6.allspw.continuum.{0}'.format(suffix)
 tclean(vis=mslist,
        imagename=imagename,
        datacolumn='data',
@@ -135,6 +137,7 @@ tclean(vis=mslist,
        specmode='mfs',
        deconvolver='mtmfs',
        nterms=2,
+       scales=[0,4,12],
        outframe='LSRK',
        threshold='1mJy',
        imsize=[6000, 6000],
@@ -148,7 +151,7 @@ tclean(vis=mslist,
        interactive=False)
 makefits(imagename)
 
-imagename = 'sgr_b2m.N.allspw.continuum.{0}'.format(suffix)
+imagename = 'sgr_b2m.N.B6.allspw.continuum.{0}'.format(suffix)
 tclean(vis=mslist,
        imagename=imagename,
        datacolumn='data',
@@ -157,6 +160,7 @@ tclean(vis=mslist,
        specmode='mfs',
        deconvolver='mtmfs',
        nterms=2,
+       scales=[0,4,12],
        outframe='LSRK',
        threshold='1mJy',
        imsize=[6000, 6000],
@@ -165,6 +169,56 @@ tclean(vis=mslist,
        gridder='standard',
        weighting='briggs',
        robust=0.5,
+       pbcor=True,
+       pblimit=0.2,
+       interactive=False)
+makefits(imagename)
+
+
+
+suffix='.r-2.cleanto5mJy_2terms'
+niter=100000
+imagename = 'sgr_b2m.M.B6.allspw.continuum.{0}'.format(suffix)
+tclean(vis=mslist,
+       imagename=imagename,
+       datacolumn='data',
+       spw=['0,1,2,3', '0,1,2,3'],
+       field=['4', '5'],
+       specmode='mfs',
+       deconvolver='mtmfs',
+       nterms=2,
+       scales=[0,4,12],
+       outframe='LSRK',
+       threshold='5mJy',
+       imsize=[6000, 6000],
+       cell=['0.007arcsec'],
+       niter=niter,
+       gridder='standard',
+       weighting='briggs',
+       robust=-2,
+       pbcor=True,
+       pblimit=0.2,
+       interactive=False)
+makefits(imagename)
+
+imagename = 'sgr_b2m.N.B6.allspw.continuum.{0}'.format(suffix)
+tclean(vis=mslist,
+       imagename=imagename,
+       datacolumn='data',
+       spw=['0,1,2,3', '0,1,2,3'],
+       field=['5', '6'],
+       specmode='mfs',
+       deconvolver='mtmfs',
+       nterms=2,
+       scales=[0,4,12],
+       outframe='LSRK',
+       threshold='5mJy',
+       imsize=[6000, 6000],
+       cell=['0.007arcsec'],
+       niter=niter,
+       gridder='standard',
+       weighting='briggs',
+       robust=-2,
        pbcor=True,
        pblimit=0.2,
        interactive=False)
