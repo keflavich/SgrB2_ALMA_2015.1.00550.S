@@ -1,0 +1,21 @@
+#CRTF
+ellipse [[266.8328446deg, -28.37189640deg], [1.937arcsec, 2.612arcsec], 0.000000deg] coord=ICRS
+ellipse [[266.8329272deg, -28.37044149deg], [1.762arcsec, 0.987arcsec], 0.000000deg] coord=ICRS
+ellipse [[266.8320192deg, -28.37105649deg], [2.136arcsec, 1.113arcsec], 135.840415deg] coord=ICRS
+circle [[266.8329038deg, -28.36898221deg], 0.067arcsec] coord=ICRS
+circle [[266.8329733deg, -28.36899443deg], 0.099arcsec] coord=ICRS
+circle [[266.8330279deg, -28.36941211deg], 0.097arcsec] coord=ICRS
+circle [[266.8346332deg, -28.36980863deg], 0.117arcsec] coord=ICRS
+circle [[266.8302206deg, -28.37083758deg], 0.234arcsec] coord=ICRS
+circle [[266.8312821deg, -28.37070198deg], 0.132arcsec] coord=ICRS
+circle [[266.8311776deg, -28.37049592deg], 0.228arcsec] coord=ICRS
+circle [[266.8308606deg, -28.37074636deg], 0.228arcsec] coord=ICRS
+circle [[266.8310551deg, -28.37032791deg], 0.228arcsec] coord=ICRS
+circle [[266.8300644deg, -28.36996332deg], 0.228arcsec] coord=ICRS
+circle [[266.8318154deg, -28.37011869deg], 0.228arcsec] coord=ICRS
+circle [[266.8318212deg, -28.37344077deg], 0.334arcsec] coord=ICRS
+circle [[266.8328077deg, -28.37290702deg], 0.334arcsec] coord=ICRS
+circle [[266.8336569deg, -28.37305554deg], 0.131arcsec] coord=ICRS
+circle [[266.8330948deg, -28.37266473deg], 0.439arcsec] coord=ICRS
+circle [[266.8329289deg, -28.37095744deg], 0.418arcsec] coord=ICRS
+circle [[266.8326863deg, -28.37104730deg], 0.856arcsec] coord=ICRS
