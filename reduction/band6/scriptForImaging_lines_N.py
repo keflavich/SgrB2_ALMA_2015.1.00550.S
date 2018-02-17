@@ -35,7 +35,7 @@ for spw,spw_orig in spwlist:
         step = 1920/32
         for startchan in np.arange(0, 1920, step):
 
-            imagename = 'sgr_b2m.M.spw{0}.lines{2}-{3}.{1}'.format(spw, suffix, startchan, startchan+step)
+            imagename = 'sgr_b2m.N.spw{0}.lines{2}-{3}.{1}'.format(spw, suffix, startchan, startchan+step)
             if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):
                 print("Imaging {0} at {1}".format(imagename, datetime.datetime.now()))
                 tclean(vis=mslist,

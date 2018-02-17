@@ -1,6 +1,3 @@
-"""
-...is this right at all?
-"""
 
 import os
 import glob
@@ -37,7 +34,6 @@ for spw,spw_orig in enumerate((25,27,29,31)):
                start='',
                outframe='LSRK',
                nchan=-1,
-               restfreq='217.10498GHz',
                threshold='1mJy',
                imsize=[6000, 6000],
                cell=['0.007arcsec'],
@@ -61,7 +57,6 @@ for spw,spw_orig in enumerate((25,27,29,31)):
                start='',
                outframe='LSRK',
                nchan=-1,
-               restfreq='217.10498GHz',
                threshold='1mJy',
                imsize=[6000, 6000],
                cell=['0.007arcsec'],
