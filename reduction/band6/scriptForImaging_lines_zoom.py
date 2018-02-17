@@ -56,6 +56,7 @@ for spw,spw_orig in spwlist:
                        pbcor=True,
                        pblimit=0.2,
                        savemodel='none',
+                       parallel=True,
                        interactive=False)
                 makefits(imagename)
 
@@ -89,5 +90,6 @@ for spw,spw_orig in spwlist:
                        pbcor=True,
                        pblimit=0.2,
                        savemodel='none',
+                       parallel=True,
                        interactive=False)
                 makefits(imagename)
