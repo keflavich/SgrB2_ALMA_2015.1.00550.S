@@ -25,14 +25,14 @@ if 'spwlist' not in locals():
 
 mslist = ['uid___A002_Xc44eb5_X1139.ms.split.cal', 'uid___A002_Xc483da_Xa88.ms.split.cal']
 
-for ms in mslist:
-    listobs(ms, listfile=ms+'.listobs', overwrite=True)
+#for ms in mslist:
+#    listobs(ms, listfile=ms+'.listobs', overwrite=True)
 
 for spw,spw_orig in spwlist:
 
     for suffix, niter in (('clarkclean1000', 1000), ):
         
-        for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1750, 0.004)]:
+        for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1200, 0.004)]:
 
             imagename = 'sgr_b2m.N.spw{0}.lines.{1}.robust{2}'.format(spw, suffix, robust)
             if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):
@@ -40,7 +40,7 @@ for spw,spw_orig in spwlist:
                 tclean(vis=mslist,
                        imagename=imagename,
                        datacolumn='data',
-                       phasecenter='ICRS 17:47:19.878s -28.22.18.549',
+                       phasecenter='ICRS 17:47:19.878 -28.22.18.549',
                        spw=['{0}'.format(spw), '{0}'.format(spw)],
                        field=['5', '6'],
                        specmode='cube',
@@ -56,7 +56,7 @@ for spw,spw_orig in spwlist:
                        pbcor=True,
                        pblimit=0.2,
                        savemodel='none',
-                       parallel=True,
+                       parallel=False,
                        interactive=False)
                 makefits(imagename)
 
@@ -66,7 +66,7 @@ for spw,spw_orig in spwlist:
 
     for suffix, niter in (('clarkclean1000', 1000), ):
         
-        for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1750, 0.004)]:
+        for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1200, 0.004)]:
 
             imagename = 'sgr_b2m.M.spw{0}.lines{1}.robust{2}'.format(spw, suffix, robust)
             if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):
@@ -90,6 +90,6 @@ for spw,spw_orig in spwlist:
                        pbcor=True,
                        pblimit=0.2,
                        savemodel='none',
-                       parallel=True,
+                       parallel=False,
                        interactive=False)
                 makefits(imagename)
