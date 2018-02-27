@@ -1,4 +1,19 @@
-Title: An extraordinary accretion flow in Sgr B2 North
+\documentclass[twocolumn]{aastex61}
+\usepackage{datetime} % TODO: remove this after submission
+\input{preface}
+\newcommand{\dsgrb}{\ensuremath{8.4\textrm{~kpc}}\xspace}
+\newcommand{\percent}{\%\xspace}
+
+\begin{document}
+\title{Title: An extraordinary accretion flow in Sgr B2 North}
+\titlerunning{Sgr B2 ALMA LB}
+\authorrunning{Ginsburg et al}
+\input{authors}
+\begin{abstract}
+    This is an abstract
+\end{abstract}
+
+
 
 \section{Introduction}
 
@@ -27,6 +42,9 @@ There are several notable features that make this accretion flow unique within o
 
 title?: The radiation environment in the most massive forming cluster in the local group
 
+\section{Results: Description of the Sgr B2 N region}
+\subsection{The Veil}
+\label{sec:theveil}
 Toward Sgr B2 N, we observe a transition from likely optically thin to
 certainly optically thick emission between 3 and 1 mm.  The overall structure
 of the region, as seen at 3 mm, is a central main north-south filament, another
@@ -35,8 +53,18 @@ various angles along the main ridge.  At 1 mm, there is a narrow region along
 the main ridge with $T_{B,1 mm} < T_{B,3 mm}$, which is a clear indication
 that the material is optically thick and centrally heated.
 
+In order to reach an optical depth $\tau\geq1$ at 1-3 mm, a huge quantity of
+dust is required.  Adopting an extrapolated dust opacity $\kappa_\nu = 0.0018
+(\nu/96 \mathrm{GHz})^{\beta}$ cm$^2$ g$^{-1}$, the required column density is
+$N(\hh) = 1.2\ee{26} (\nu/96 \mathrm{GHz})^{-\beta}$ \persc, or $N(\hh) \sim
+2\ee{25} - 1\ee{26}$ \persc.  In a circular beam with $r=0.05$\arcsec (425 AU),
+this translates to $\sim6-35$ \msun per beam.  The opacity is highly uncertain,
+as it is likely that, given the high observed temperatures, most of the grain
+mantles have been evaporated, so it is safest to regard these column density
+and mass estimates as lower limits.
+
 The central source, Sgr B2 N K2, is behind this veil.  At 3 mm, it has a peak
-brightness temperature of $\sim900$ K toward the central source, but at this
+brightness temperature of $\gtrsim1000$ K toward the central source, but at this
 location, the brightest position measures only $\sim200$ K.  (CHECK) The 1 mm 
 source centroid is also offset from the 3 mm centroid, indicating that we are
 only seeing a component or reflection of the illuminating source at 1 mm.
@@ -54,6 +82,108 @@ veil toward this line-of-sight.
 
 
 
-\paragraph{Ruling out synchrotron emission} The spectral index from 3 mm to 1
-mm is negative, with $\alpha\approx-1.6$.  This is steeper than any synchrotron
-source (right?).
+% \paragraph{Ruling out synchrotron emission} The spectral index from 3 mm to 1
+% mm is negative, with $\alpha\approx-1.6$.  This is steeper than any synchrotron
+% source (right?).
+
+
+\subsection{The nature of K2}
+The source K2 at the center of Sgr B2 N is easily detected at wavelengths 3 mm
+and longer, but nearly disappears at 1 mm and shorter wavelengths behind the
+veil described in Section \ref{sec:theveil}.
+
+The SED of K2 is unique because of its location behind the veil.  Unlike other
+millimeter cores or \hii regions, the source flux declines below 1 mm.  We are
+left with long-wavelength data only to interpret this source.
+
+% TODO: measure these
+The 3 mm flux density is $\sim25$ mJy, while the 2012 7 mm flux density was
+$\sim20$ mJy.  Assuming no variability, these numbers are consistent with a
+mostly optically thin \hii region ($\alpha\approx0.25$).  The brightness
+temperatures at these wavelengths (3300 K and 1300 K at 7 mm and 3 mm
+respectively) tell the same story; these temperatures are much higher than
+expected for dusty sources and the rise toward longer wavelengths suggests a
+$\sim5000-10^4$ K medium that is becoming optically thicker.
+K2 is perhaps best described as a dust-obscured hypercompact \hii region.
+
+K2 is surrounded by emission at both 3 and 7 mm.  There is emission to the
+northwest at both wavelengths, while at 3 mm there is emission in all
+directions.  The high brightness temperature of the northwest emission ($T_{B,7
+mm}\gtrsim500$ K) hints that it is again free-free emission, while the
+nondetection of much of the extended 3 mm emission suggests that it is
+predominantly dust.  Unfortunately, the presence of the free-free emission complicates
+the SED measurement of K2 at longer wavelengths, as the 1.3 cm beam from De Pree+
+includes contributions from this extended component.
+
+\subsection{Star Formation and Fragmentation in the Veil}
+As noted in Section \ref{sec:theveil}, the inverted 1 mm - 3 mm SED in many
+spatial pixels across the `veil' implies the presence of high optical depths
+and correspondingly extremely high column densities.
+Despite these extraordinary column densities, we do not observe any clear
+signs of fragmentation outside of the innermost $\sim1000$ AU; there are no
+point sources in the inner 3 \arcsec region and the gas emission appears
+continuous across the field of view.
+
+Nominally, a $>6$ \msun blob of gas residing in a spherical region $r<450$ AU
+across ($n>10^9$ \percc) is highly Jeans unstable even at $T\gtrsim 500$ K,
+with $M_J \sim 0.5$ \msun at such high densities.  However, we can assume
+instead that the material is spread out along a line-of-sight distance
+comparable to the observed length scale of the filaments, $\sim1-3\arcsec$ or
+8000-25000 AU, which would lower the density to $n\sim10^{7.5-8}$ \percc -
+still an extraordinarily high density for such large scales.   At these
+densities, the Jeans mass rises to $M_J\sim2-3$ \msun.
+
+
+\subsection{Inflow and Outflow}
+The streams pointing in to K2 appear to be inflow channels.  However, because
+of the optical depth in the continuum noted in Section \ref{sec:theveil}, it is
+not possible to characterize the kinematics of these channels at 1 mm.
+
+
+
+\subsection{The gas}
+Sgr B2 N is also know as the ``Molecular Heimat'', the region in our Galaxy
+host to the greatest number of detected molecules.  We detect this region as
+a $\sim2$\arcsec radius circle centered on K2.  It contains a forest of lines
+with highly complicated chemistry and kinematics.
+
+In this section, we break down the observed material into spatial and kinematic
+components that we are able to visually distinguish.
+
+\paragraph{The NW/SE outflow}
+There is a giant outflow detected in SiO J=5-4 and several other lines (e.g., SO $6_5-5_4$).
+It has several surprising features illustrated in Figure \ref{fig:sioflow}:
+\begin{enumerate}
+    \item The outflow lobes are centered on a point at least 0.2\arcsec (1600 AU)
+        from K2, suggesting that K2 is not the dominant accretion source.
+    \item The lobes correspond to regions conspicuously devoid of continuum
+        emission, which implies that this outflow is a dominant force shaping
+        the gas.
+\end{enumerate}
+The SiO has broader width than other lines, confirming that it is a kinematically
+distinct feature and not simply part of the overall accretion flow.
+
+\Figure{figures/sgrb2n_sio_outflow.pdf}
+{An image of the SiO J=5-4 outflow from Sgr B2 N.
+The contours show the redshifted (moment 0 from 77 to 100 \kms) and blueshifted
+(moment 0 from 20 to 50 \kms) lobes at levels of 100, 200, 300, 400, and 500
+mJy \perbeam in $0.083\arcsec\times0.042\arcsec$ beams at PA=80.5$\deg$.  The
+greyscale shows the 1 mm continuum, robust -2 weighted image.  The yellow
+contours show the 3 mm continuum at levels of 5, 10, and 20 mJy \perbeam in
+$0.057\arcsec\times0.042\arcsec$ beams at PA=37.9$\deg$.
+The giant outflow apparently does not point back to the central K2 source, hinting
+that the dominant accretion source remains undetected.
+The outflow lobes correspond to regions of substantially lower continuum emission,
+suggesting that the outflows have a dramatic effect on the structure of the region
+and are the dominant force shaping it.
+}
+{fig:sioflow}{1}{7in}
+
+By contrast, there is no clear bipolar outflow in the NE/SW direction.
+There is a large-scale line feature spanning a narrow (but difficult to determine)
+velocity range in this direction [ it is difficult to determine because it shows up
+in nearly every line, hinting that it's not a true `outflow' but just some excited region.... ].
+Morphologically, it appears to be outflow-like, with bow-shaped ends, but the feature appears
+at a single velocity range and is relatively narrow.
+
+\end{document}

@@ -7,6 +7,11 @@ import radio_beam
 for fn in ('SgrB2_B3_continuum_QA2_minimumcutout.fits',
            'sgr_b2m.N.allspw.continuum.clean1000.image.tt0.pbcor.fits',
            'sgr_b2m.N.B6.allspw.continuum.r-2.cleanto2mJy_2terms.image.tt0.pbcor.fits',
+           #'sgr_b2m.M.B3.allspw.continuum.r-2.dirty.image.tt0.pbcor.fits',
+           'sgr_b2m.N.B3.allspw.continuum.r-2.dirty.image.tt0.pbcor.fits',
+           #'sgr_b2m.M.B3.allspw.continuum.r0.5.clean1000.image.tt0.pbcor.fits',
+           #'sgr_b2m.N.B3.allspw.continuum.r0.5.clean1000.image.tt0.pbcor.fits',
+           #'sgr_b2m.M.B3.allspw.continuum.r-2.clean1000.image.tt0.pbcor.fits',
           ):
 
     fh = fits.open(paths.Fpath(fn))

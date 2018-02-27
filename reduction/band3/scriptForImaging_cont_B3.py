@@ -29,7 +29,7 @@ for suffix, niter in (('dirty', 0), ('clean1000', 1000), ):
     for robust in (0.5, -2):
 
         imagename = 'sgr_b2m.M.B3.allspw.continuum.r{1}.{0}'.format(suffix, robust)
-        if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):
+        if not os.path.exists("{0}.image.tt0.pbcor.fits".format(imagename)):
             print("Imaging {0} at {1}".format(imagename, datetime.datetime.now()))
             tclean(vis=mslist,
                    imagename=imagename,
@@ -54,7 +54,7 @@ for suffix, niter in (('dirty', 0), ('clean1000', 1000), ):
             makefits(imagename)
 
         imagename = 'sgr_b2m.N.B3.allspw.continuum.r{1}.{0}'.format(suffix, robust)
-        if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):
+        if not os.path.exists("{0}.image.tt0.pbcor.fits".format(imagename)):
             print("Imaging {0} at {1}".format(imagename, datetime.datetime.now()))
             tclean(vis=mslist,
                    imagename=imagename,

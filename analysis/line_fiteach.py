@@ -15,8 +15,10 @@ for freq in line_frequencies:
 
     f1,f2 = (1-dv/constants.c) * freq, (1+dv/constants.c) * freq
     x1,x2 = np.argmin(np.abs(cube.spectral_axis-f1)), np.argmin(np.abs(cube.spectral_axis-f2))
+    if x1>x2:
+        x1,x2 = x2,x1
+    assert x2-x1 > 5
 
-    # universal mask
     mask = cube[x1:x2].max(axis=0) > 0.03*u.Jy/u.beam
 
 
@@ -25,9 +27,9 @@ for freq in line_frequencies:
     pcube.cube -= pcube.cube.max(axis=0)
 
     sp = pcube.get_spectrum(545, 455)
-    sp.specfit(guesses=[-0.001, freq.to(u.GHz).value, 3e6])
+    sp.specfit(guesses=[-0.001, freq.to(u.GHz).value, 3e-3])
 
-    pcube.fiteach(guesses=[-0.001, freq.to(u.GHz).value], maskmap=mask,
+    pcube.fiteach(guesses=[-0.001, freq.to(u.GHz).value, 3e-3], maskmap=mask,
                   multicore=12, start_from_point=(545,455), signal_cut=0)
 
     pcube.write_fit('linefit_{0:0.3f}GHz.fits'.format(freq.to(u.GHz).value))
