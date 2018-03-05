@@ -6,9 +6,13 @@ from spectral_cube import SpectralCube, Projection
 
 import paths
 import files
+import regions
 
 import pylab as pl
 
+
+regs = regions.read_ds9(paths.rpath('sio_masers.reg'))
+v2maser = regs[-1]
 
 bluefile = paths.Fpath('SgrB2_N_SiO_blue_20to50kms.fits')
 redfile = paths.Fpath('SgrB2_N_SiO_blue_77to100kms.fits')
@@ -52,4 +56,11 @@ ax.contour(cont_b3[0].data[2700:-2700, 2700:-2700],
 ax.axis((476.83561197916686, 1324.4918619791667, 281.24845377604174,
          1316.4047037760415))
 
+ax.plot(v2maser.center.ra, v2maser.center.dec, marker='x', color='w',
+        markersize=7,
+        markeredgewidth=2,
+        transform=ax.get_transform('icrs'))
+
 fig.savefig(paths.fpath('sgrb2n_sio_outflow.pdf'), bbox_inches='tight')
+
+

@@ -42,11 +42,11 @@ mslist = ['uid___A002_Xc49eba_X108.ms', 'uid___A002_Xc49eba_X5a8.ms']
 #for ms in mslist:
 #    listobs(ms, listfile=ms+'.listobs', overwrite=True)
 
-for spw,spw_orig in spwlist:
+for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1200, 0.004)]:
 
-    for suffix, niter in (('clarkclean1000', 1000), ):
-        
-        for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1200, 0.004)]:
+    for spw,spw_orig in spwlist:
+
+        for suffix, niter in (('clarkclean1000', 1000), ):
 
             imagename = 'sgr_b2m.N.spw{0}.B3.lines.{1}.robust{2}'.format(spw, suffix, robust)
             if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):
@@ -76,11 +76,11 @@ for spw,spw_orig in spwlist:
 
 
 # do M second
-for spw,spw_orig in spwlist:
+for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1200, 0.004)]:
 
-    for suffix, niter in (('clarkclean1000', 1000), ):
-        
-        for robust, imsize, cellsize in [(0.5, 1000, 0.007), (-2, 1200, 0.004)]:
+    for spw,spw_orig in spwlist:
+
+        for suffix, niter in (('clarkclean1000', 1000), ):
 
             imagename = 'sgr_b2m.M.spw{0}.B3.lines.{1}.robust{2}'.format(spw, suffix, robust)
             if not os.path.exists("{0}.image.pbcor.fits".format(imagename)):

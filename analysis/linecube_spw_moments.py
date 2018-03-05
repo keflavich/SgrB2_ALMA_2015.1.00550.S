@@ -14,7 +14,7 @@ for fn in glob.glob("sgr_b2m.[NM].spw*.image.pbcor.fits"):
     if fits.getdata(fn).ndim <= 2:
         print("Skipped {0} because it wasn't a cube".format(fn))
         continue
-    if os.path.exists('collapse/max/{0}'.format(fn.replace(".image.pbcor.fits","_max_K.fits"))):
+    if os.path.exists('collapse/maxspec/{0}'.format(fn.replace(".image.pbcor.fits","_max_spec.fits"))):
         print("Skipped {0} because it is done".format(fn))
         continue
 
@@ -23,6 +23,11 @@ for fn in glob.glob("sgr_b2m.[NM].spw*.image.pbcor.fits"):
     cube.allow_huge_operations = True
     mcube = cube.mask_out_bad_beams(0.1)
     mcube.beam_threshold = 1
+
+
+    mxspec = mcube.max(axis=(1,2))
+    mxspec.write("collapse/maxspec/{0}".format(fn.replace(".image.pbcor.fits", "_max_spec.fits")))
+    mxspec.quicklook("collapse/maxspec/pngs/{0}".format(fn.replace(".image.pbcor.fits", "_max_spec.png")))
 
     mx = mcube.max(axis=0)
     beam = mcube.beam if hasattr(mcube, 'beam') else mcube.average_beams(1)
@@ -51,3 +56,5 @@ for fn in glob.glob("sgr_b2m.[NM].spw*.image.pbcor.fits"):
         pctmap_K.write('collapse/percentile/{0}'.format(fn.replace(".image.pbcor.fits","_{0}pct_K.fits".format(pct))),
                        overwrite=True)
         pctmap_K.quicklook('collapse/percentile/pngs/{0}'.format(fn.replace(".image.pbcor.fits","_{0}pct_K.png".format(pct))))
+
+    pl.close('all')

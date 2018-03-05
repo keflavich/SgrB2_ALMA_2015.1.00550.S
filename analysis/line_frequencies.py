@@ -26,3 +26,98 @@ line_frequencies = [
     218697722899.05243,
     218710875780.90143,
 ]*u.Hz
+
+
+
+
+# these are all from B3 spw2
+
+# most of these are probably ~62 km/s, but some classes may be offset (haven't identified carriers yet)
+# The unknown lines report the frequency at 62 km/s.  The known (ID'd) lines report their rest frequency
+extended_structure_lines = {
+    'CH3OH_211-110--': 97.582808*u.GHz,
+    'CH3OH_211-110': 96.755507*u.GHz,
+    'U97.9420': 97.9420*u.GHz,
+    'CH3OHvt=1_211-110--': 96.588596*u.GHz,
+}
+
+foreground_absorbers = {
+    'CH3OH_2(-1,2)-1(-1,1)': 96.73939*u.GHz,
+    'CH3OH_2(0,2)-1(0,1)++': 96.741377*u.GHz,
+}
+
+smooth_extended_lines = {
+    'Mystery96.8989': 96.91893*u.GHz,
+    'OCS8-7': 97.3012085*u.GHz,
+    'U98.1568': 98.1568*u.GHz,
+}
+
+inner_smooth_extended_lines = {
+    'C2H5CN,v20=1-A_44(6,39)-45(3,42)': 96.9812285*u.GHz,
+    'U98.3580': 98.3580*u.GHz,
+}
+
+inner_unsmooth = {
+    'H13CCCNv7=1_11-10': 97.3603297*u.GHz,
+    'U97.6578': 97.6578*u.GHz,
+    'U97.6695': 97.6695*u.GHz,
+}
+
+dust_extenders = {
+    'U96.4964': 96.4964*u.GHz,
+    'U97.1196': 97.1196*u.GHz,
+    'U97.1860': 97.1860*u.GHz,
+    'U97.2437': 97.2437*u.GHz,
+    'U97.3491': 97.3491*u.GHz,
+    'U97.4439': 97.4439*u.GHz,
+    'U97.5064': 97.5064*u.GHz,
+    'U97.5161': 97.5161*u.GHz,
+    'U97.5425': 97.5425*u.GHz,
+    'U97.5542': 97.5542*u.GHz,
+    'U97.5806': 97.5806*u.GHz,
+    'U97.6119': 97.6119*u.GHz,
+    'U97.6255': 97.6255*u.GHz,
+    'U97.6294': 97.6294*u.GHz,
+    'U97.7359': 97.7359*u.GHz,
+    'U97.7544': 97.7544*u.GHz,
+    'U97.7642': 97.7642*u.GHz,
+    'U97.7964': 97.7964*u.GHz,
+    'U97.8091': 97.8091*u.GHz,
+    'U97.8375': 97.8375*u.GHz,
+    'U97.8580': 97.8580*u.GHz,
+    'U98.0406': 98.0406*u.GHz,
+    'U98.1715': 98.1715*u.GHz,
+    'U98.2603': 98.2603*u.GHz,
+}
+
+spiraly_dust_features = {
+    'U97.8658': 97.8658*u.GHz,
+    'U97.8726': 97.8726*u.GHz,
+    'U97.8765': 97.8765*u.GHz,
+    'U97.9234': 97.9234*u.GHz,
+}
+
+
+puffballs = {
+    'U97.1333': 97.1333*u.GHz,
+    'U97.5972': 97.5972*u.GHz,
+    'U97.6040': 97.6040*u.GHz,
+    'U97.8238': 97.8238*u.GHz,
+    'U98.0211': 98.0211*u.GHz,
+    'U98.0328': 98.0328*u.GHz,
+    'U98.0533': 98.0533*u.GHz,
+    'U98.1861': 98.1861*u.GHz,
+    'U98.2066': 98.2066*u.GHz,
+    'U98.2174': 98.2174*u.GHz,
+    'U98.2379': 98.2379*u.GHz,
+    'U98.2447': 98.2447*u.GHz,
+}
+
+outflow = {
+    'CS_2-1': 97.980953*u.GHz,
+}
+
+
+innermost_core = {
+    'HCNv3=1_J=1-0': 88.027223*u.GHz,
+}
