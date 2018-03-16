@@ -3,7 +3,7 @@ import datetime
 import os
 import glob
 
-def makefits(myimagebase):
+def makefits(myimagebase, cleanup=True):
     impbcor(imagename=myimagebase+'.image.tt0', pbimage=myimagebase+'.pb.tt0', outfile=myimagebase+'.image.tt0.pbcor', overwrite=True) # perform PBcorr
     exportfits(imagename=myimagebase+'.image.tt0.pbcor', fitsimage=myimagebase+'.image.tt0.pbcor.fits', dropdeg=True, overwrite=True) # export the corrected image
     exportfits(imagename=myimagebase+'.image.tt1', fitsimage=myimagebase+'.image.tt1.fits', dropdeg=True, overwrite=True) # export the corrected image
@@ -13,6 +13,14 @@ def makefits(myimagebase):
     exportfits(imagename=myimagebase+'.residual.tt0', fitsimage=myimagebase+'.residual.tt0.fits', dropdeg=True, overwrite=True) # export the PB image
     exportfits(imagename=myimagebase+'.alpha', fitsimage=myimagebase+'.alpha.fits', dropdeg=True, overwrite=True)
     exportfits(imagename=myimagebase+'.alpha.error', fitsimage=myimagebase+'.alpha.error.fits', dropdeg=True, overwrite=True)
+
+    if cleanup:
+        for ttsuffix in ('.tt0', '.tt1', 'tt2'):
+            for suffix in ('pb{tt}', 'weight', 'sumwt{tt}', 'psf{tt}',
+                           'model{tt}', 'mask', 'image{tt}', 'residual{tt}',
+                           'alpha', ):
+                os.system('rm -rf {0}.{1}'.format(myimagebase, suffix).format(tt=ttsuffix))
+
 
 
 
