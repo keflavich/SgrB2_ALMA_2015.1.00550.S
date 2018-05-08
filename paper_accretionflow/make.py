@@ -8,7 +8,7 @@ import update_bibentries
 
 assert os.path.exists('bibdesk.bib')
 
-name = 'sgrb2_cores'
+name = 'sgrb2n_accretion'
 
 parser = argparse.ArgumentParser(description='Make latex files.')
 parser.add_argument('--referee', default=False,
