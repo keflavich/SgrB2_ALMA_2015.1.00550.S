@@ -54,9 +54,9 @@ for region in ("N","M"):
 
 
 import pyds9
-dd = pyds9.ds9()
-dd.set('lock frames wcs')
-dd.set('lock slice wcs')
+dd = pyds9.DS9()
+#dd.set('lock frames wcs')
+#dd.set('lock slice wcs')
 for cubeid, cube in cubes.items():
     cube.to_ds9(ds9id=dd.id, newframe=True)
 
