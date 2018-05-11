@@ -10,22 +10,20 @@ DVIPS=dvips
 PS2PDF=ps2pdf
 SHELL=/bin/bash
 
-all: gitstuff.tex sgrb2_cores
+all: gitstuff.tex sgrb2n_accretion
 
-.PHONY: sgrb2_cores
-sgrb2_cores: 
+.PHONY: sgrb2n_accretion
+sgrb2n_accretion: 
 	echo "texpath: ${texpath}"
 	python make_apjform.py
 	python make.py --texpath=${texpath}
-	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=sgrb2_cores_compressed.pdf sgrb2_cores.pdf
+	gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=sgrb2n_accretion_compressed.pdf sgrb2n_accretion.pdf
 
 .PHONY: diff
 diff:
-	python parse_macros.py sgrb2_cores.tex sgrb2_cores_fordiff.tex
+	python parse_macros.py sgrb2n_accretion.tex sgrb2n_accretion_fordiff.tex
 	python parse_macros.py submitted.tex original_for_diff.tex
-	#python parse_macros.py sgrb2_cores_aug13.tex sgrb2_cores_aug13_fordiff.tex
-	#python2 parse_macros.py sgrb2_cores_feb16_2016_submitted.tex sgrb2_cores_feb16_2016_submitted_fordiff.tex
-	latexdiff original_for_diff.tex sgrb2_cores_fordiff.tex > diff.tex
+	latexdiff original_for_diff.tex sgrb2n_accretion_fordiff.tex > diff.tex
 	${SKIPERR} diff.tex
 	${BIBTEX} diff
 	${SKIPERR} diff.tex

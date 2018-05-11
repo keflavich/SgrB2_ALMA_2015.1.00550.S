@@ -12,7 +12,7 @@ import pylab as pl
 
 
 regs = regions.read_ds9(paths.rpath('sio_masers.reg'))
-v2maser = regs[-1]
+v2maser = regs[2]
 
 bluefile = paths.Fpath('SgrB2_N_SiO_blue_20to50kms.fits')
 redfile = paths.Fpath('SgrB2_N_SiO_blue_77to100kms.fits')
@@ -47,19 +47,26 @@ ax.imshow(cont_b6[0].data[2250:-2250,2250:-2250],
          )
 
 ax.contour(blue.value, colors=['b']*10, levels=[0.1,0.2,0.3,0.4,0.5],
-           transform=ax.get_transform(blue.wcs))
+           transform=ax.get_transform(blue.wcs),
+           linewidths=0.5)
 ax.contour(red.value, colors=['r']*10, levels=[0.1,0.2,0.3,0.4,0.5],
-           transform=ax.get_transform(red.wcs))
+           transform=ax.get_transform(red.wcs),
+           linewidths=0.5)
 ax.contour(cont_b3[0].data[2700:-2700, 2700:-2700],
            colors=['y']*10, levels=[0.005, 0.01, 0.02],
-           transform=ax.get_transform(wcs.WCS(cont_b3[0].header).celestial[2700:-2700, 2700:-2700]))
+           transform=ax.get_transform(wcs.WCS(cont_b3[0].header).celestial[2700:-2700, 2700:-2700]),
+           linewidths=0.5)
 ax.axis((476.83561197916686, 1324.4918619791667, 281.24845377604174,
          1316.4047037760415))
+ax.set_xlabel("RA (ICRS)")
+ax.set_ylabel("Dec (ICRS)")
 
 ax.plot(v2maser.center.ra, v2maser.center.dec, marker='x', color='w',
         markersize=7,
-        markeredgewidth=2,
-        transform=ax.get_transform('icrs'))
+        markeredgewidth=1,
+        transform=ax.get_transform('icrs'),
+        zorder=50
+       )
 
 fig.savefig(paths.fpath('sgrb2n_sio_outflow.pdf'), bbox_inches='tight')
 

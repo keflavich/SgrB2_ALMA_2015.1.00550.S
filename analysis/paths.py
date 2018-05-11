@@ -29,6 +29,9 @@ def dpath(x):
 def Fpath(x):
     return os.path.join(root,'FITS',x)
 
+def eFpath(x):
+    return os.path.join('/Volumes/external/sgrb2/2016.1.00550.S/',x)
+
 def sppath(x):
     return os.path.join(root,spectra_plots,x)
 
