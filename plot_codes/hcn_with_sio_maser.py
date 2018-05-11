@@ -70,7 +70,7 @@ ax.axis((525, 725, 375, 625))
 ax.contour(hcnv3j1.value, colors=['r']*10, levels=[150,200,250,300,450,500],
            linewidths=0.9,
            transform=ax.get_transform(hcnv3j1.wcs))
-ax.contour(siov2j2.value, colors=['b']*10, levels=np.linspace(500,10000,5),
+ax.contour(siov2j2.value, colors=['c']*10, levels=np.linspace(500,10000,5),
            linewidths=0.9,
            transform=ax.get_transform(siov2j2.wcs))
 
