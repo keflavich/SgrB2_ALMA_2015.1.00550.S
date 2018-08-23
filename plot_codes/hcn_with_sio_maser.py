@@ -50,6 +50,22 @@ else:
               ).max(axis=0)
     hcnv3j1.write(hcnv3j1im)
 
+hcnv1j1im = paths.Fpath('HCN_v1_j1_peak_N.fits')
+if os.path.exists(hcnv1j1im):
+    hcnv1j1 = Projection.from_hdu(fits.open(hcnv1j1im))
+else:
+    region,spw,band,freq = 'N',1,3,88.006629*u.GHz
+    fn = paths.eFpath('sgr_b2m.{0}.spw{1}.B{2}.lines.clarkclean1000.robust0.5.image.pbcor.medsub.fits'
+                      .format(region, spw, band))
+    hcnv1j1 = (SpectralCube
+             .read(fn)
+             .with_spectral_unit(u.km/u.s, velocity_convention='radio',
+                                 rest_value=freq)
+             .spectral_slab(55*u.km/u.s, 110*u.km/u.s)
+             .to(u.K)
+              ).max(axis=0)
+    hcnv1j1.write(hcnv1j1im)
+
 fig = pl.figure(3)
 fig.clf()
 
@@ -67,6 +83,9 @@ ax.contour(cont_b3[0].data[2700:-2700, 2700:-2700],
            transform=ax.get_transform(wcs.WCS(cont_b3[0].header).celestial[2700:-2700, 2700:-2700]))
 ax.axis((525, 725, 375, 625))
 
+ax.contour(hcnv1j1.value, colors=['lime']*10, levels=[100,150],
+           linewidths=0.9,
+           transform=ax.get_transform(hcnv1j1.wcs))
 ax.contour(hcnv3j1.value, colors=['r']*10, levels=[150,200,250,300,450,500],
            linewidths=0.9,
            transform=ax.get_transform(hcnv3j1.wcs))

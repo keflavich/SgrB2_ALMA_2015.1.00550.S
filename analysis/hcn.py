@@ -14,11 +14,26 @@ lines = Splatalogue.query_lines(83*u.GHz, 103*u.GHz, chemical_name=' HCN ',
                                 line_lists=['SLAIM'])
 lines2 = Splatalogue.query_lines(214*u.GHz, 240*u.GHz, chemical_name=' HCN ',
                                  line_lists=['SLAIM'])
-freqs = {row['Species']+"_"+row['Resolved QNs']: row['Freq-GHz']*u.GHz
+freq_key = lines.colnames[2]
+qn_key = lines.colnames[6]
+freqs = {row['Species']+"_"+row[qn_key]: row[freq_key]*u.GHz
          for row in lines}
-freqs.update({row['Species']+"_"+row['Resolved QNs']: row['Freq-GHz']*u.GHz for
+freqs.update({row['Species']+"_"+row[qn_key]: row[freq_key]*u.GHz for
               row in lines2})
 
+
+lines3 = Splatalogue.query_lines(83*u.GHz, 103*u.GHz, chemical_name=' HCO\+ ',
+                                line_lists=['SLAIM'])
+lines4 = Splatalogue.query_lines(214*u.GHz, 240*u.GHz, chemical_name=' HCO\+ ',
+                                 line_lists=['SLAIM'])
+freq_key = lines.colnames[2]
+qn_key = lines.colnames[6]
+freqs.update({row['Species']+"_"+row[qn_key]: row[freq_key]*u.GHz
+              for row in lines3})
+freqs.update({row['Species']+"_"+row[qn_key]: row[freq_key]*u.GHz for
+              row in lines4})
+
+print(freqs)
 
 
 cubes = {}
@@ -30,9 +45,10 @@ for region in ("N","M"):
             for line in freqs:
                 fn = 'full_SgrB2{0}_spw{1}_lines_cutout{0}_medsub.fits'.format(region, spw)
                 fn = 'sgr_b2m.{0}.spw{1}.B{2}.lines.clarkclean1000.robust0.5.image.pbcor.medsub.fits'.format(region, spw, band)
-                cube = SpectralCube.read(paths.eFpath(fn))
+                cube = SpectralCube.read(paths.Fpath(fn))
                 freq = freqs[line]
                 if cube.spectral_extrema[0] < freq < cube.spectral_extrema[1]:
+                    print("Matched {line} to spw {spw}".format(line=line, spw=spw))
                     subcube = (cube.with_spectral_unit(u.km/u.s,
                                                       velocity_convention='radio',
                                                       rest_value=freq)
@@ -54,7 +70,7 @@ for region in ("N","M"):
 
 
 import pyds9
-dd = pyds9.DS9()
+dd = pyds9.DS9('hcnsgrb2')
 #dd.set('lock frames wcs')
 #dd.set('lock slice wcs')
 for cubeid, cube in cubes.items():

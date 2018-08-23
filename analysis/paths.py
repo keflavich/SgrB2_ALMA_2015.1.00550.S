@@ -2,7 +2,7 @@ import os
 import socket
 
 if 'nmpost' in socket.gethostname():
-    root = '/lustre/aginsbur/sgrb2/'
+    root = '/lustre/aginsbur/sgrb2/2016.1.00550.S/'
 else:
     root = '/Users/adam/work/sgrb2/alma_lb/'
 
