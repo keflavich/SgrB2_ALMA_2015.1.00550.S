@@ -31,7 +31,7 @@ for ms in mslist:
 for spw,spw_orig in spwlist:
 
     for suffix, niter in (('clarkclean1000', 1000), ):
-        
+
         step = 1920/32
         for startchan in np.arange(0, 1920, step):
 
