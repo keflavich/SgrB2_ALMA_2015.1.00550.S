@@ -28,6 +28,6 @@ for spw in (0,1,2,3):
                 cube.allow_huge_operations = True
 
                 cont.write(outcontfn, overwrite=True)
-                
+
                 cscube = cube - cont
                 cscube.write(outfn)
