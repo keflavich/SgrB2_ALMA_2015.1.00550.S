@@ -69,5 +69,4 @@ ax.plot(v2maser.center.ra, v2maser.center.dec, marker='x', color='w',
        )
 
 fig.savefig(paths.fpath('sgrb2n_sio_outflow.pdf'), bbox_inches='tight')
-
-
+fig.savefig(paths.fpath('sgrb2n_sio_outflow.png'), bbox_inches='tight')

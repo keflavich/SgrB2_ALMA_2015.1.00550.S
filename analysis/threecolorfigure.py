@@ -15,7 +15,12 @@ def rgbfig(figfilename="SgrB2N_RGB.pdf",
            scalebarx=coordinates.SkyCoord(266.833545*u.deg, -28.37283819*u.deg),
            redfn=paths.Fpath('SGRB2N-2012-Q.DePree_K.recentered.fits'),
            greenfn=paths.Fpath('sgr_b2m.N.B3.allspw.continuum.r0.5.clean1000.image.tt0.pbcor.fits'),
-           bluefn=paths.Fpath('sgr_b2m.N.B6.allspw.continuum.r0.5.clean1000.image.tt0.pbcor.fits')):
+           bluefn=paths.Fpath('sgr_b2m.N.B6.allspw.continuum.r0.5.clean1000.image.tt0.pbcor.fits'),
+           redpercentile=99.99,
+           greenpercentile=99.99,
+           bluepercentile=99.99,
+           stretch=visualization.AsinhStretch(),
+          ):
 
     header = fits.getheader(redfn)
     celwcs = wcs.WCS(header).celestial
@@ -35,17 +40,21 @@ def rgbfig(figfilename="SgrB2N_RGB.pdf",
 
     #def rescale(x):
     #    return (x-np.nanmin(x))/(np.nanmax(x) - np.nanmin(x))
-    rescale = visualization.PercentileInterval(99.99)
+    redrescale = visualization.PercentileInterval(redpercentile)
+    greenrescale = visualization.PercentileInterval(greenpercentile)
+    bluerescale = visualization.PercentileInterval(bluepercentile)
 
 
-    rgb = np.array([rescale(redhdu[0].data.squeeze()),
-                    rescale(greendata),
-                    rescale(bluedata),]).swapaxes(0,2).swapaxes(0,1)
+    rgb = np.array([stretch(redrescale(redhdu[0].data.squeeze())),
+                    stretch(greenrescale(greendata)),
+                    stretch(bluerescale(bluedata)),
+                   ]
+                  ).swapaxes(0,2).swapaxes(0,1)
 
 
     norm = visualization.ImageNormalize(rgb,
                                         interval=visualization.MinMaxInterval(),
-                                        stretch=visualization.AsinhStretch())
+                                        stretch=stretch)
 
     fig1 = pl.figure(1)
     fig1.clf()
@@ -62,12 +71,16 @@ def rgbfig(figfilename="SgrB2N_RGB.pdf",
 
 if __name__ == "__main__":
 
-    rgbfig()
+    rgbfig(stretch=visualization.LinearStretch(),)
 
     rgbfig(figfilename='SgrB2M_RGB.pdf',
-           lims=[(266.8350734, 266.832958), (-28.38600555, -28.3832)],
+           lims=[(266.8359, 266.8325), (-28.38600555, -28.3832)],
            redfn=paths.Fpath('SGRB2M-2012-Q-MEAN.DePree.recentered.fits'),
            greenfn=paths.Fpath('sgr_b2m.M.B3.allspw.continuum.r0.5.clean1000.image.tt0.pbcor.fits'),
            bluefn=paths.Fpath('sgr_b2m.M.B6.allspw.continuum.r0.5.clean1000.image.tt0.pbcor.fits'),
            scalebarx=coordinates.SkyCoord(266.8336007*u.deg, -28.38553839*u.deg),
+           redpercentile=99.99,
+           greenpercentile=99.98,
+           bluepercentile=99.98,
+           stretch=visualization.AsinhStretch(),
           )
