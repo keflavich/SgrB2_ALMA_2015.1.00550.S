@@ -8,6 +8,7 @@ import paths
 from astroquery.splatalogue import Splatalogue
 from astropy import units as u
 from spectral_cube import SpectralCube
+import warnings
 
 
 lines = Splatalogue.query_lines(83*u.GHz, 103*u.GHz, chemical_name=' HCN ',
@@ -45,28 +46,32 @@ for region in ("N","M"):
             for line in freqs:
                 fn = 'full_SgrB2{0}_spw{1}_lines_cutout{0}_medsub.fits'.format(region, spw)
                 fn = 'sgr_b2m.{0}.spw{1}.B{2}.lines.clarkclean1000.robust0.5.image.pbcor.medsub.fits'.format(region, spw, band)
+                print(fn)
                 cube = SpectralCube.read(paths.Fpath(fn))
                 freq = freqs[line]
                 if cube.spectral_extrema[0] < freq < cube.spectral_extrema[1]:
                     print("Matched {line} to spw {spw}".format(line=line, spw=spw))
                     subcube = (cube.with_spectral_unit(u.km/u.s,
-                                                      velocity_convention='radio',
-                                                      rest_value=freq)
+                                                       velocity_convention='radio',
+                                                       rest_value=freq)
                                .spectral_slab(25*u.km/u.s, 95*u.km/u.s)
                               )
-                    try:
-                        subcube = subcube.to(u.K)
-                    except Exception as ex:
-                        print("Failed: {0}".format(ex))
-                    if 'OBJECT' in subcube.meta:
-                        subcube.meta['OBJECT'] = subcube.meta['OBJECT'] + line
-                    else:
-                        subcube.meta['OBJECT'] = "{0}_{1}".format(region, line)
-                    del subcube._header['OBJECT']
-                    subcube._nowcs_header['OBJECT'] = subcube.meta['OBJECT']
-                    subcube._header['OBJECT'] = subcube.meta['OBJECT']
-                    cubes[(region,spw,line)] = subcube
-                    mx[(region,spw,line)] = subcube.max(axis=0, how='slice')
+                    with warnings.catch_warnings():
+                        warnings.filterwarnings('ignore')
+                        try:
+                            subcube = subcube.to(u.K)
+                        except Exception as ex:
+                            print("Failed: {0}".format(ex))
+
+                        if 'OBJECT' in subcube.meta:
+                            subcube.meta['OBJECT'] = subcube.meta['OBJECT'] + line
+                        else:
+                            subcube.meta['OBJECT'] = "{0}_{1}".format(region, line)
+                        del subcube._header['OBJECT']
+                        subcube._nowcs_header['OBJECT'] = subcube.meta['OBJECT']
+                        subcube._header['OBJECT'] = subcube.meta['OBJECT']
+                        cubes[(region,spw,line)] = subcube
+                        mx[(region,spw,line)] = subcube.max(axis=0, how='slice')
 
 
 import pyds9
