@@ -58,7 +58,7 @@ for spw,spw_orig in spwlist:
                    robust=0.5,
                    pbcor=True,
                    pblimit=0.2,
-                   chanchunks=16
+                   chanchunks=16,
                    savemodel='none',
                    interactive=False)
             makefits(imagename)
@@ -85,6 +85,7 @@ for spw,spw_orig in spwlist:
                    robust=0.5,
                    pbcor=True,
                    pblimit=0.2,
+                   chanchunks=16,
                    savemodel='none',
                    interactive=False)
             makefits(imagename)
